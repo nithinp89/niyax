@@ -1,0 +1,27 @@
+services:
+  niyax:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PORT=8080
+      - REDIS_HOST=redis://niyax-redis:6379
+    ports:
+      - "8080:8080" # host : container - Left open for debugging if needed in hostmachine
+    restart: unless-stopped
+
+  niyax-redis:
+    image: redis:alpine
+    restart: unless-stopped
+    expose:
+      - "6379" # Not mapped to host, only available internally
+
+  niyax-nginx:
+    build:
+      context: ./deploy/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80" # Expose nginx to host, use 443 for https
+    depends_on:
+      - niyax
+    restart: unless-stopped
