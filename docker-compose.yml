@@ -1,5 +1,6 @@
 services:
   niyax:
+    image: niyax-front
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,12 +12,16 @@ services:
     restart: unless-stopped
 
   niyax-redis:
-    image: redis:alpine
+    image: niyax-redis
+    build:
+      context: ./deploy/redis
+      dockerfile: Dockerfile
     restart: unless-stopped
     expose:
       - "6379" # Not mapped to host, only available internally
 
   niyax-nginx:
+    image: niyax-nginx
     build:
       context: ./deploy/nginx
       dockerfile: Dockerfile
