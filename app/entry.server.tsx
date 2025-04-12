@@ -14,9 +14,9 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   routerContext: EntryContext,
-  //loadContext: AppLoadContext
+  loadContext: AppLoadContext
   // If you have middleware enabled:
-  loadContext: unstable_RouterContextProvider
+  //loadContext: unstable_RouterContextProvider
 ) {
   const url = new URL(request.url);
   const host = url.hostname; // e.g. tenant-1.niyax.localhost

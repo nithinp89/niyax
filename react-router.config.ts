@@ -3,7 +3,7 @@ import "react-router";
 
 declare module "react-router" {
   interface Future {
-    unstable_middleware: true; // 👈 Enable middleware types
+    unstable_middleware: false; // 👈 Enable middleware types
   }
 }
 
@@ -12,7 +12,7 @@ export default {
   // Server-side render by default, to enable SPA mode set this to `false`
   ssr: true,
   future: {
-    unstable_middleware: true, // 👈 Enable middleware https://sergiodxa.com/tutorials/use-middleware-in-react-router
+    unstable_middleware: false, // 👈 Enable middleware https://sergiodxa.com/tutorials/use-middleware-in-react-router
     // ...Other future or unstable flags
   },
 } satisfies Config;
